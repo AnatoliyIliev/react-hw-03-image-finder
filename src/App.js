@@ -1,8 +1,9 @@
 import { Component } from "react";
 import "./App.module.scss";
-import { PixabayAPI } from "./services/PixabayAPI";
+import { ToastContainer } from "react-toastify";
+// import { PixabayAPI } from "./services/PixabayAPI";
 import Searchbar from "./Components/Searchbar";
-import ImageGallery from "./Components/ImageGallery";
+// import ImageGallery from "./Components/ImageGallery";
 
 class App extends Component {
   state = {
@@ -12,24 +13,27 @@ class App extends Component {
     loading: false,
   };
 
-  loadImage = async (searchQuery) => {
-    // console.log('loadImage', searchQuery);
-    return await PixabayAPI(searchQuery, this.state.page);
-  };
+  // loadImage = async (searchQuery) => {
+  //   // console.log('loadImage', searchQuery);
+  //   return await PixabayAPI(searchQuery, this.state.page);
+  // };
 
   submitForm = (searchQuery) => {
-    // console.log('searchQuery-submitForm-tralll', searchQuery);
+    console.log("searchQuery-submitForm-tralll", searchQuery);
     this.setState({ searchQuery });
-    this.loadImage(searchQuery);
+    // this.loadImage(searchQuery);
+    // console.log(this.loadImage().hits)
   };
 
   render() {
     return (
       <div>
         <Searchbar onSubmit={this.submitForm} />
-        <ImageGallery
+        {/* <ImageGallery
         // loadImage={}
-        />
+        
+        /> */}
+        <ToastContainer autoClose={3000} />
       </div>
     );
   }
