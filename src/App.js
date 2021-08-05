@@ -1,9 +1,11 @@
 import { Component } from "react";
+import "./App.module.scss";
 import { PixabayAPI } from "./services/PixabayAPI";
+import Searchbar from "./Components/Searchbar";
 
 class App extends Component {
   state = {
-    searchQuery: "cat",
+    searchQuery: "",
     page: 1,
     error: null,
     loading: false,
@@ -14,20 +16,15 @@ class App extends Component {
     // await PixabayAPI(searchQuery, page)
   };
 
-  render() {
-    const { searchQuery, page } = this.state;
+  submitForm = (searchQuery) => {
+    this.setState({ searchQuery });
+  };
 
+  render() {
     return (
       <div>
-        <h1>How many people</h1>
-
-        {this.loadImage(searchQuery, page)}
-        <ul>
-          <li>
-            {console.log("222", this.loadImage(searchQuery, page))}
-            {/* <img src={this.loadImage.hits[0].webformatURL} alt={this.loadImage.hits[0].id }/> */}
-          </li>
-        </ul>
+        {/* {this.loadImage(searchQuery, page)} */}
+        <Searchbar onSubmit={this.submitForm} />
       </div>
     );
   }
