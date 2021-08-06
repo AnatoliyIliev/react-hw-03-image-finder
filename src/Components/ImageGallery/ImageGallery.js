@@ -1,6 +1,6 @@
 import ImageGalleryItem from "../ImageGalleryItem";
 
-const ImageGallery = () => {
+const ImageGallery = ({ PixabayImage, searchQuery, page }) => {
   return (
     <ul className="ImageGallery">
       <ImageGalleryItem
