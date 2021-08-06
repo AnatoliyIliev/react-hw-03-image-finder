@@ -1,8 +1,19 @@
-const ImageGalleryItem = ({ id, webformatURL, largeImageURL }) => {
+// import styles from './ImageGalleryItem.module.scss';
+
+const ImageGalleryItem = (PixabayImage, searchQuery) => {
   return (
-    <li className="ImageGalleryItem">
-      <img src="" alt="" className="ImageGalleryItem-image" />
-    </li>
+    PixabayImage.lenght > 0 && (
+      <>
+        {
+          console.log(PixabayImage)
+          // PixabayImage.map((hit) => (
+          //   <li className={styles.ImageGalleryItem}>
+          //     <img src={hit.webformatURL} alt={searchQuery} key={ hit.id }className={styles.ImageGalleryItem_image} />
+          //   </li>
+          // ))
+        }
+      </>
+    )
   );
 };
 

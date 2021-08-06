@@ -8,19 +8,20 @@ import ImageGallery from "./Components/ImageGallery";
 
 class App extends Component {
   state = {
-    PixabayImage: [],
+    PixabayImage: null,
     searchQuery: "",
     page: 1,
     error: null,
     loading: false,
   };
 
-  loadImage = async (searchQuery) => {
+  loadImage = async () => {
+    const { searchQuery, page } = this.state;
     this.setState({ loading: true });
+    // console.log("loadImage-APP", searchQuery);
     try {
-      const PixabayImage = await PixabayAPI(searchQuery, this.state.page);
-      this.setState({ PixabayImage });
-      console.log(this.state.PixabayImage);
+      const PixabayImage = await PixabayAPI(searchQuery, page);
+      this.setState({ PixabayImage: PixabayImage.hits });
     } catch (error) {
       this.setState({ error: error.message });
     } finally {
@@ -29,22 +30,24 @@ class App extends Component {
   };
 
   submitForm = (searchQuery) => {
-    console.log("searchQuery-submitForm-App", searchQuery);
+    // console.log("searchQuery-submitForm-App", searchQuery);
     this.setState({ searchQuery });
-    this.loadImage(searchQuery);
+    // this.loadImage(searchQuery);
 
     // console.log(this.loadImage().hits)
   };
 
   render() {
-    const { PixabayImage, searchQuery, page } = this.state;
+    // const { PixabayImage, searchQuery, page } = this.state;
+    // const { PixabayImage, searchQuery } = this.state;
+    const { searchQuery } = this.state;
     return (
       <div>
         <Searchbar onSubmit={this.submitForm} />
         <ImageGallery
+          // loadImage={this.loadImage}
+          PixabayImage={this.loadImage()}
           searchQuery={searchQuery}
-          page={page}
-          PixabayImage={PixabayImage}
         />
         <ToastContainer autoClose={3000} />
       </div>

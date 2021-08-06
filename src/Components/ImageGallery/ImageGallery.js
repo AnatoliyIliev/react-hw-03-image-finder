@@ -1,13 +1,10 @@
 import ImageGalleryItem from "../ImageGalleryItem";
+import styles from "./ImageGallery.module.scss";
 
-const ImageGallery = ({ PixabayImage, searchQuery, page }) => {
+const ImageGallery = ({ PixabayImage, searchQuery }) => {
   return (
-    <ul className="ImageGallery">
-      <ImageGalleryItem
-      // id={id}
-      // webformatURL={ webformatURL }
-      // largeImageURL={largeImageURL}
-      />
+    <ul className={styles.ImageGallery}>
+      <ImageGalleryItem PixabayImage={PixabayImage} searchQuery={searchQuery} />
     </ul>
   );
 };

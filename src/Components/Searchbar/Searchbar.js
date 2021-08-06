@@ -17,12 +17,11 @@ class Searchbar extends Component {
 
     if (this.state.searchQuery.trim() === "") {
       toast.error("Введите что-то для поиска.");
-      // alert("Введите что-то для поиска.");
       return;
     }
 
     this.props.onSubmit(this.state.searchQuery);
-    console.log("handleSubmit-Searchbar", this.state.searchQuery);
+    // console.log("handleSubmit-Searchbar", this.state.searchQuery);
     this.setState({ searchQuery: "" });
   };
 
