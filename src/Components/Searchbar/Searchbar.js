@@ -13,7 +13,6 @@ class Searchbar extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(this.state.searchQuery);
 
     if (this.state.searchQuery.trim() === "") {
       toast.error("Введите что-то для поиска.");
@@ -21,7 +20,6 @@ class Searchbar extends Component {
     }
 
     this.props.onSubmit(this.state.searchQuery);
-    // console.log("handleSubmit-Searchbar", this.state.searchQuery);
     this.setState({ searchQuery: "" });
   };
 
