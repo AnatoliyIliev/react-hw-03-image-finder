@@ -2,10 +2,13 @@ import { Component } from "react";
 import ImageGalleryItem from "../ImageGalleryItem";
 import styles from "./ImageGallery.module.scss";
 import { PixabayAPI } from "../../services/PixabayAPI";
+// import Loader from "react-loader-spinner";
+import Loading from "../Loader";
+import Button from "../Button/";
 
 class ImageGallery extends Component {
   state = {
-    PixabayImage: null,
+    PixabayImage: [],
     searchQuery: "",
     page: 1,
     error: null,
@@ -17,14 +20,10 @@ class ImageGallery extends Component {
     const { searchQuery } = this.props;
 
     if (prevProps.searchQuery !== searchQuery) {
-      console.log("this.props.searchQuery", searchQuery);
-      this.setState({ loading: true });
-      console.log("loadImage-APP", searchQuery);
+      this.setState({ loading: true, PixabayImage: [] });
       try {
         const PixabayImage = await PixabayAPI(searchQuery, 1);
         this.setState({ PixabayImage: PixabayImage.hits });
-        // console.log(PixabayImage.hits);
-        // return PixabayImage.hits;
       } catch (error) {
         this.setState({ error: error.message });
       } finally {
@@ -33,15 +32,21 @@ class ImageGallery extends Component {
     }
   }
 
+  // LoadMoreButton = !(this.state.PixabayImage.lenght < 12) && this.componentDidUpdate
+
   render() {
+    const { PixabayImage, loading } = this.state;
+    const LoadMoreButton = () =>
+      !(this.state.PixabayImage.length < 12) && !loading;
     return (
-      <ul className={styles.ImageGallery}>
-        {/* <li>{this.props.searchQuery}</li> */}
-        <ImageGalleryItem
-          PixabayImage={this.state.PixabayImage}
-          // searchQuery={this.props.searchQuery}
-        />
-      </ul>
+      <>
+        {console.log(LoadMoreButton())}
+        {this.state.loading && <Loading />}
+        <ul className={styles.ImageGallery}>
+          <ImageGalleryItem PixabayImage={PixabayImage} />
+        </ul>
+        {LoadMoreButton && <Button onFetch={this.componentDidUpdate} />}
+      </>
     );
   }
 }

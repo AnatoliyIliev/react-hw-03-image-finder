@@ -23,9 +23,7 @@ class App extends Component {
     return (
       <div>
         <Searchbar onSubmit={this.submitForm} />
-        {/* {searchQuery && ( */}
         <ImageGallery searchQuery={searchQuery} />
-        {/* )} */}
         <ToastContainer autoClose={3000} />
       </div>
     );
