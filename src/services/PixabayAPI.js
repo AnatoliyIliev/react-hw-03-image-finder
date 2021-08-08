@@ -7,7 +7,7 @@ const BASE_URL = "https://pixabay.com/api";
 // webformatURL: "",
 // largeImageURL: "",
 
-export const PixabayAPI = async (searchQuery, page) => {
+export const PixabayAPI = async ({ searchQuery, page }) => {
   // console.log("searchQuery-PixabayAPI", searchQuery);
   // console.log("page-PixabayAPI", page);
   const API_URL = `${BASE_URL}/?q=${searchQuery}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`;

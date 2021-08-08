@@ -9,6 +9,8 @@ const ImageGalleryItem = ({ PixabayImage }) => {
             src={hit.webformatURL}
             alt={hit.user}
             className={styles.ImageGalleryItem_image}
+            id={hit.id}
+            largeImageURL={hit.largeImageURL}
           />
         </li>
       ))}

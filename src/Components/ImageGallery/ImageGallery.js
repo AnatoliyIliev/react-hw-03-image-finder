@@ -7,10 +7,10 @@ class ImageGallery extends Component {
   };
 
   render() {
-    const { PixabayImage } = this.props;
+    const { PixabayImage, onClick } = this.props;
     return (
       <>
-        <ul className={styles.ImageGallery}>
+        <ul className={styles.ImageGallery} onClick={onClick}>
           <ImageGalleryItem PixabayImage={PixabayImage} />
         </ul>
       </>
