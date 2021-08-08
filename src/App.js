@@ -19,7 +19,7 @@ class App extends Component {
     showModal: false,
     activeId: null,
     alt: "",
-    largeImageURL: "",
+    url: "",
   };
 
   submitForm = (searchQuery) => {
@@ -61,36 +61,16 @@ class App extends Component {
   };
 
   isOpenModal = (event) => {
-    console.log(event);
-    // console.log(event.target);
-    // console.log(event.target.alt);
-    // console.log(this.state.PixabayImage);
-    // console.log(event.target.attributes.attributes);
-    // const { alt } = event.target;
-    // const activeId = event.target.id;
-    // console.log(event.target.nodeName)
-    // const { url } = event.target.dataset;
-    // console.log(url);
-
-    // this.state.PixabayImage.filter(({id,  attributes }) => {
-    //   if (id === event.target.id) {
-    //     return this.setState({
-    //       activeId: event.target.id,
-    //       alt: alt,
-    //       largeImageURL: attributes,
-    //     })
-    //   }
-    // })
-
-    // this.toggleModal();
+    this.setState({
+      activeId: event.target.id,
+      alt: event.target.alt,
+      url: event.target.attributes.url.nodeValue,
+    });
+    this.toggleModal();
   };
 
   render() {
-    // console.log(this.state.activeId);
-    // console.log(this.state.alt);
-    // console.log(this.state.largeImageURL);
-    const { PixabayImage, loading, error, showModal, largeImageURL, alt } =
-      this.state;
+    const { PixabayImage, loading, error, showModal, url, alt } = this.state;
     const LoadMoreButton = !(PixabayImage.length < 12) && !loading;
 
     return (
@@ -103,7 +83,7 @@ class App extends Component {
         {LoadMoreButton && <Button onFetch={this.fetchUpdate} />}
         {showModal && (
           <Modal onClose={this.toggleModal} onClick={this.isOpenModal}>
-            <img src={largeImageURL} alt={alt} />
+            <img src={url} alt={alt} />
           </Modal>
         )}
       </div>
