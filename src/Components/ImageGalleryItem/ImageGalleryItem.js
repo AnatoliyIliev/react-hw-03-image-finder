@@ -1,9 +1,10 @@
-import styles from "./ImageGalleryItem.module.scss";
+import styles from './ImageGalleryItem.module.scss';
+import PropTypes from 'prop-types';
 
 const ImageGalleryItem = ({ PixabayImage }) => {
   return (
     <>
-      {PixabayImage.map((hit) => (
+      {PixabayImage.map(hit => (
         <li className={styles.ImageGalleryItem} key={hit.id}>
           <img
             src={hit.webformatURL}
@@ -16,6 +17,10 @@ const ImageGalleryItem = ({ PixabayImage }) => {
       ))}
     </>
   );
+};
+
+ImageGalleryItem.propTypes = {
+  PixabayImage: PropTypes.array.isRequired,
 };
 
 export default ImageGalleryItem;

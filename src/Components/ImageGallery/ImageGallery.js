@@ -1,9 +1,10 @@
-import { Component } from "react";
-import ImageGalleryItem from "../ImageGalleryItem";
-import styles from "./ImageGallery.module.scss";
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+import ImageGalleryItem from '../ImageGalleryItem';
+import styles from './ImageGallery.module.scss';
 class ImageGallery extends Component {
   state = {
-    searchQuery: "",
+    searchQuery: '',
   };
 
   render() {
@@ -17,4 +18,10 @@ class ImageGallery extends Component {
     );
   }
 }
+
+ImageGallery.propTypes = {
+  PixabayImage: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
 export default ImageGallery;
